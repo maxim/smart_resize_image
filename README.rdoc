@@ -1,3 +1,4 @@
+= smart_resize_image
 Should be easy to find, right? All you want is a function that resizes an image to constraints (doesn't care if it should scale up or down), with possibility to select if you want to keep it proportional, and possibility to use either width or height as the constraint. Also, you want it to preserve transparency damn it! Surprisingly, I was unable to find a good function that does all that, so I decided to attempt writing it. This should do it.
 
 == Features/Usage:

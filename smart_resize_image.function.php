@@ -1,8 +1,13 @@
 <?
-  function smart_resize_image( $file, $width = 0, $height = 0, $proportional = false, $output = 'file', $delete_original = true, $use_linux_commands = false ) {
-    if ( $height <= 0 && $width <= 0 ) {
-      return false;
-    }
+  function smart_resize_image($file,
+                              $width              = 0, 
+                              $height             = 0, 
+                              $proportional       = false, 
+                              $output             = 'file', 
+                              $delete_original    = true, 
+                              $use_linux_commands = false ) {
+      
+    if ( $height <= 0 && $width <= 0 ) return false;
 
     # Setting defaults and meta
     $info                         = getimagesize($file);
@@ -13,9 +18,9 @@
 
     # Calculating proportionality
     if ($proportional) {
-      if ($width == 0)      $factor = $height/$height_old;
-      elseif ($height == 0) $factor = $width/$width_old;
-      else                  $factor = min( $width / $width_old, $height / $height_old );
+      if      ($width  == 0)  $factor = $height/$height_old;
+      elseif  ($height == 0)  $factor = $width/$width_old;
+      else                    $factor = min( $width / $width_old, $height / $height_old );
 
       $final_width  = round( $width_old * $factor );
       $final_height = round( $height_old * $factor );
@@ -56,10 +61,8 @@
     
     # Taking care of original, if needed
     if ( $delete_original ) {
-      if ( $use_linux_commands )
-        exec('rm '.$file);
-      else
-        @unlink($file);
+      if ( $use_linux_commands ) exec('rm '.$file);
+      else @unlink($file);
     }
 
     # Preparing a method of providing result
