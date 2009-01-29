@@ -1,6 +1,8 @@
 = smart_resize_image
 Should be easy to find, right? All you want is a function that resizes an image to constraints (doesn't care if it should scale up or down), with possibility to select if you want to keep it proportional, and possibility to use either width or height as the constraint. Also, you want it to preserve transparency damn it! Surprisingly, I was unable to find a good function that does all that, so I decided to attempt writing it. This should do it.
 
+Note: Original announcement and comments for the function are available at http://new.mediumexposure.com/techblog/smart-image-resizing-while-preserving-transparency-php-and-gd-library
+
 == Features/Usage:
 
     * If you pass width as 0 (zero) -- this function will disregard width, and use height as constraint. Same vice versa.
