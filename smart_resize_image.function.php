@@ -1,5 +1,7 @@
-<?
-  function smart_resize_image($file,
+<?php
+//See: http://github.com/maxim/smart_resize_image
+
+function smart_resize_image($file,
                               $width              = 0, 
                               $height             = 0, 
                               $proportional       = false, 
@@ -32,8 +34,8 @@
 
     # Loading image to memory according to type
     switch ( $info[2] ) {
-      case IMAGETYPE_GIF:   $image = imagecreatefromgif($file);   break;
       case IMAGETYPE_JPEG:  $image = imagecreatefromjpeg($file);  break;
+      case IMAGETYPE_GIF:   $image = imagecreatefromgif($file);   break;
       case IMAGETYPE_PNG:   $image = imagecreatefrompng($file);   break;
       default: return false;
     }
@@ -84,8 +86,8 @@
     
     # Writing image according to type to the output destination
     switch ( $info[2] ) {
-      case IMAGETYPE_GIF:   imagegif($image_resized, $output);    break;
       case IMAGETYPE_JPEG:  imagejpeg($image_resized, $output);   break;
+      case IMAGETYPE_GIF:   imagegif($image_resized, $output);    break;
       case IMAGETYPE_PNG:   imagepng($image_resized, $output);    break;
       default: return false;
     }
