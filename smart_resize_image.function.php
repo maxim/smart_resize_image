@@ -45,7 +45,7 @@
       $transparency = imagecolortransparent($image);
 
       if ($transparency >= 0) {
-        $transparent_color  = imagecolorsforindex($image, $trnprt_indx);
+        $trnprt_color  = imagecolorsforindex($image, $transparency);
         $transparency       = imagecolorallocate($image_resized, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
         imagefill($image_resized, 0, 0, $transparency);
         imagecolortransparent($image_resized, $transparency);
