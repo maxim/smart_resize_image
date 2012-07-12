@@ -15,6 +15,7 @@
     $final_width                  = 0;
     $final_height                 = 0;
     list($width_old, $height_old) = $info;
+	$cropHeight = $cropWidth = 0;
 
     # Calculating proportionality
     if ($proportional) {
@@ -28,6 +29,12 @@
     else {
       $final_width = ( $width <= 0 ) ? $width_old : $width;
       $final_height = ( $height <= 0 ) ? $height_old : $height;
+	  $widthX = $width_old / $width;
+	  $heightX = $height_old / $height;
+	  
+	  $x = min($widthX, $heightX);
+	  $cropWidth = ($width_old - $width * $x) / 2;
+	  $cropHeight = ($height_old - $height * $x) / 2;
     }
 
     # Loading image to memory according to type
@@ -57,8 +64,9 @@
         imagesavealpha($image_resized, true);
       }
     }
-    imagecopyresampled($image_resized, $image, 0, 0, 0, 0, $final_width, $final_height, $width_old, $height_old);
-    
+    imagecopyresampled($image_resized, $image, 0, 0, $cropWidth, $cropHeight, $final_width, $final_height, $width_old - 2 * $cropWidth, $height_old - 2 * $cropHeight);
+	
+	
     # Taking care of original, if needed
     if ( $delete_original ) {
       if ( $use_linux_commands ) exec('rm '.$file);
