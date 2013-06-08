@@ -26,6 +26,9 @@ There is a new parameter "output" which can be set to either
 === Update 
 There is another new parameter "delete_original". Speaks for itself.
 
+=== Update 
+Add new parameter "$quality", input from 1-100 (with default 100) which 
+indicates the image quality when saving the new file.
 
 == License
 
