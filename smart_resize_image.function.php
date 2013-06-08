@@ -1,11 +1,25 @@
 <?
+/**
+ * easy image resize function
+ * @param  $file - file name to resize
+ * @param  $width - new image width
+ * @param  $height - new image height
+ * @param  $proportional - keep image proportional, default is no
+ * @param  $output - name of the new file (include path if needed)
+ * @param  $delete_original - if true the original image will be deleted
+ * @param  $use_linux_commands - if set to true will use "rm" to delete the image, if false will use PHP unlink
+ * @param  $quality - enter 1-100 (100 is best quality) default is 100
+ * @return boolean|resource
+ */
   function smart_resize_image($file,
                               $width              = 0, 
                               $height             = 0, 
                               $proportional       = false, 
                               $output             = 'file', 
                               $delete_original    = true, 
-                              $use_linux_commands = false ) {
+                              $use_linux_commands = false,
+  							  $quality = 100
+  		 ) {
       
     if ( $height <= 0 && $width <= 0 ) return false;
 
@@ -82,11 +96,11 @@
       break;
     }
     
-    # Writing image according to type to the output destination
+    # Writing image according to type to the output destination and image quality
     switch ( $info[2] ) {
-      case IMAGETYPE_GIF:   imagegif($image_resized, $output);    break;
-      case IMAGETYPE_JPEG:  imagejpeg($image_resized, $output);   break;
-      case IMAGETYPE_PNG:   imagepng($image_resized, $output);    break;
+      case IMAGETYPE_GIF:   imagegif($image_resized, $output, $quality);    break;
+      case IMAGETYPE_JPEG:  imagejpeg($image_resized, $output, $quality);   break;
+      case IMAGETYPE_PNG:   imagepng($image_resized, $output, $quality);    break;
       default: return false;
     }
 
