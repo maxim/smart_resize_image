@@ -1,12 +1,11 @@
 = PHP - easy and smart image resize function
 
-resizing a image made simply
-use 1 function to do it all !
+resizing a image with 1 simple function
 
 = How to use : (code snippet)
 
 
-      //indicate which file to resize
+      //indicate which file to resize (can be any type jpg/png/gif/etc...)
       $file = 'your_path_to_file/file.png';
       
       //indicate the path and name for the new resized file
