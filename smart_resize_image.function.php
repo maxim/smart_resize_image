@@ -64,8 +64,9 @@
     $image_resized = imagecreatetruecolor( $final_width, $final_height );
     if ( ($info[2] == IMAGETYPE_GIF) || ($info[2] == IMAGETYPE_PNG) ) {
       $transparency = imagecolortransparent($image);
+      $palletsize = imagecolorstotal($image);
 
-      if ($transparency >= 0) {
+      if ($transparency >= 0 && $transparency < $palletsize) {
         $transparent_color  = imagecolorsforindex($image, $transparency);
         $transparency       = imagecolorallocate($image_resized, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
         imagefill($image_resized, 0, 0, $transparency);
