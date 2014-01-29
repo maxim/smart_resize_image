@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * easy image resize function
  * @param  $file - file name to resize
