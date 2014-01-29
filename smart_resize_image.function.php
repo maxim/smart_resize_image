@@ -46,8 +46,8 @@
 
     # Loading image to memory according to type
     switch ( $info[2] ) {
-      case IMAGETYPE_GIF:   $image = imagecreatefromgif($file);   break;
       case IMAGETYPE_JPEG:  $image = imagecreatefromjpeg($file);  break;
+      case IMAGETYPE_GIF:   $image = imagecreatefromgif($file);   break;
       case IMAGETYPE_PNG:   $image = imagecreatefrompng($file);   break;
       default: return false;
     }
