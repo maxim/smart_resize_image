@@ -12,7 +12,7 @@ resizing a image with 1 simple function
       $resizedFile = 'your_path_to_file/resizedFile.png';
       
       //call the function
-      smart_resize_image($file , SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , resizedFile , false , false ,100 );
+      smart_resize_image($file , SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , $resizedFile , false , false ,100 );
       
       //done!
 
