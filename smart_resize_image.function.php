@@ -2,6 +2,7 @@
 /**
  * easy image resize function
  * @param  $file - file name to resize
+ * @param  $string - The image data, as a string
  * @param  $width - new image width
  * @param  $height - new image height
  * @param  $proportional - keep image proportional, default is no
@@ -12,6 +13,7 @@
  * @return boolean|resource
  */
   function smart_resize_image($file,
+                              $string             = null,
                               $width              = 0, 
                               $height             = 0, 
                               $proportional       = false, 
@@ -22,9 +24,10 @@
   		 ) {
       
     if ( $height <= 0 && $width <= 0 ) return false;
+    if ( $file === null && $string === null ) return false;
 
     # Setting defaults and meta
-    $info                         = getimagesize($file);
+    $info                         = $file !== null ? getimagesize($file) : getimagesizefromstring($string);
     $image                        = '';
     $final_width                  = 0;
     $final_height                 = 0;
@@ -53,9 +56,9 @@
 
     # Loading image to memory according to type
     switch ( $info[2] ) {
-      case IMAGETYPE_JPEG:  $image = imagecreatefromjpeg($file);  break;
-      case IMAGETYPE_GIF:   $image = imagecreatefromgif($file);   break;
-      case IMAGETYPE_PNG:   $image = imagecreatefrompng($file);   break;
+      case IMAGETYPE_JPEG:  $file !== null ? $image = imagecreatefromjpeg($file) : $image = imagecreatefromstring($string);  break;
+      case IMAGETYPE_GIF:   $file !== null ? $image = imagecreatefromgif($file)  : $image = imagecreatefromstring($string);  break;
+      case IMAGETYPE_PNG:   $file !== null ? $image = imagecreatefrompng($file)  : $image = imagecreatefromstring($string);  break;
       default: return false;
     }
     
