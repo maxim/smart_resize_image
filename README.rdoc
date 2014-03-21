@@ -11,8 +11,9 @@ resizing a image with 1 simple function
       //indicate the path and name for the new resized file
       $resizedFile = 'your_path_to_file/resizedFile.png';
       
-      //call the function
+      //call the function (when passing path to pic)
       smart_resize_image($file , null, SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , $resizedFile , false , false ,100 );
+      //call the function (when passing pic as string)
       smart_resize_image(null , file_get_contents($file), SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , $resizedFile , false , false ,100 );
       
       //done!
@@ -24,7 +25,7 @@ resizing a image with 1 simple function
    /**
    * easy image resize function
    * @param $file - file name to resize
-   * @param  $string - The image data as a string
+   * @param $string - The image data as a string, defualt is null
    * @param $width - new image width
    * @param $height - new image height
    * @param $proportional - keep image proportional, default is no
@@ -47,5 +48,6 @@ resizing a image with 1 simple function
    
    
    
+Thanks for all the people adding more functions! keep it going
 
 = Enjoy!
