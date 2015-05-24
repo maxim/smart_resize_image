@@ -1,6 +1,6 @@
 # PHP - smart&easy image resize function
 
-## resizing a image with 1 simple function.
+## resizing an image with 1 simple function.
 
 ## for more visit my blog : www.nimrodstech.com
 
