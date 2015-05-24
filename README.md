@@ -1,4 +1,4 @@
-# PHP - easy and smart image resize function
+# PHP - smart&easy image resize function
 
 ## resizing a image with 1 simple function.
 
