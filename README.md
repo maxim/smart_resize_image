@@ -1,12 +1,12 @@
-= PHP - easy and smart image resize function
+# PHP - easy and smart image resize function
 
-resizing a image with 1 simple function.
+## resizing a image with 1 simple function.
 
-for more things visit my blog : www.nimrodstech.com
+## for more visit my blog : www.nimrodstech.com
 
-= How to use : (code snippet)
+# How to use : (code snippet)
 
-
+```php
       //indicate which file to resize (can be any type jpg/png/gif/etc...)
       $file = 'your_path_to_file/file.png';
       
@@ -19,11 +19,11 @@ for more things visit my blog : www.nimrodstech.com
       smart_resize_image(null , file_get_contents($file), SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , $resizedFile , false , false ,100 );
       
       //done!
+```
 
+# Funcion call (with doc)
 
-= Funcion call (with doc)
-
-
+```php
    /**
    * easy image resize function
    * @param $file - file name to resize
@@ -48,8 +48,8 @@ for more things visit my blog : www.nimrodstech.com
    $quality = 100
    ) {code code code...
    
+ ```  
    
-   
-Thanks for all the people adding more functions! keep it going
+### Thanks for all the people adding more functions! keep it going
 
-= Enjoy!
+### Enjoy!
