@@ -1,10 +1,9 @@
-# PHP - smart&easy image resize function
+#PHP - smart&easy image resize function
 
-## resizing an image with 1 simple function.
+* resizing an image with 1 simple function.
+* more visit my blog : www.nimrodstech.com
 
-## for more visit my blog : www.nimrodstech.com
-
-# How to use : (code snippet)
+##How to use : (code snippet)
 
 ```php
       //indicate which file to resize (can be any type jpg/png/gif/etc...)
@@ -21,7 +20,7 @@
       //done!
 ```
 
-# Funcion call (with doc)
+##Funcion call (with doc)
 
 ```php
    /**
