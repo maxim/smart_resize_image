@@ -10,6 +10,7 @@
  * @param  $delete_original - if true the original image will be deleted
  * @param  $use_linux_commands - if set to true will use "rm" to delete the image, if false will use PHP unlink
  * @param  $quality - enter 1-100 (100 is best quality) default is 100
+ * @param  $grayscale - if true, image will be grayscale (default is false)
  * @return boolean|resource
  */
   function smart_resize_image($file,
@@ -20,7 +21,8 @@
                               $output             = 'file', 
                               $delete_original    = true, 
                               $use_linux_commands = false,
-  							  $quality = 100
+                              $quality            = 100,
+                              $grayscale          = false
   		 ) {
       
     if ( $height <= 0 && $width <= 0 ) return false;
@@ -62,6 +64,10 @@
       default: return false;
     }
     
+    # Making the image grayscale, if needed
+    if ($grayscale) {
+      imagefilter($image, IMG_FILTER_GRAYSCALE);
+    }    
     
     # This is the resizing/resampling/transparency-preserving magic
     $image_resized = imagecreatetruecolor( $final_width, $final_height );
