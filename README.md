@@ -13,9 +13,9 @@
       $resizedFile = 'your_path_to_file/resizedFile.png';
       
       //call the function (when passing path to pic)
-      smart_resize_image($file , null, SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , $resizedFile , false , false ,100 );
+      smart_resize_image($file , null, SET_YOUR_WIDTH , SET_YOUR_HEIGHT , false , $resizedFile , false , false ,100 );
       //call the function (when passing pic as string)
-      smart_resize_image(null , file_get_contents($file), SET_YOUR_WIDTH , SET_YOUR_HIGHT , false , $resizedFile , false , false ,100 );
+      smart_resize_image(null , file_get_contents($file), SET_YOUR_WIDTH , SET_YOUR_HEIGHT , false , $resizedFile , false , false ,100 );
       
       //done!
 ```
