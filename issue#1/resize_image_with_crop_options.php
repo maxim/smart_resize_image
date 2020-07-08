@@ -10,21 +10,21 @@
  * @param  $delete_original - if true the original image will be deleted
  * @param  $use_linux_commands - if set to true will use "rm" to delete the image, if false will use PHP unlink
  * @param  $quality - enter 1-100 (100 is best quality) default is 100
- * @param  $grayscale - if true, image will be grayscale (default is false)
+ * @param  $cropFromTop - if false crop will be from center, if true crop will be from top
  * @return boolean|resource
  */
   function smart_resize_image($file,
                               $string             = null,
-                              $width              = 0, 
-                              $height             = 0, 
-                              $proportional       = false, 
-                              $output             = 'file', 
-                              $delete_original    = true, 
+                              $width              = 0,
+                              $height             = 0,
+                              $proportional       = false,
+                              $output             = 'file',
+                              $delete_original    = true,
                               $use_linux_commands = false,
                               $quality            = 100,
-                              $grayscale          = false
+                              $cropFromTop        = false
   		 ) {
-      
+
     if ( $height <= 0 && $width <= 0 ) return false;
     if ( $file === null && $string === null ) return false;
 
@@ -50,7 +50,7 @@
       $final_height = ( $height <= 0 ) ? $height_old : $height;
 	  $widthX = $width_old / $width;
 	  $heightX = $height_old / $height;
-	  
+
 	  $x = min($widthX, $heightX);
 	  $cropWidth = ($width_old - $width * $x) / 2;
 	  $cropHeight = ($height_old - $height * $x) / 2;
@@ -63,12 +63,8 @@
       case IMAGETYPE_PNG:   $file !== null ? $image = imagecreatefrompng($file)  : $image = imagecreatefromstring($string);  break;
       default: return false;
     }
-    
-    # Making the image grayscale, if needed
-    if ($grayscale) {
-      imagefilter($image, IMG_FILTER_GRAYSCALE);
-    }    
-    
+
+
     # This is the resizing/resampling/transparency-preserving magic
     $image_resized = imagecreatetruecolor( $final_width, $final_height );
     if ( ($info[2] == IMAGETYPE_GIF) || ($info[2] == IMAGETYPE_PNG) ) {
@@ -88,9 +84,15 @@
         imagesavealpha($image_resized, true);
       }
     }
-    imagecopyresampled($image_resized, $image, 0, 0, $cropWidth, $cropHeight, $final_width, $final_height, $width_old - 2 * $cropWidth, $height_old - 2 * $cropHeight);
-	
-	
+
+    if ($cropFromTop){
+      $cropHeightFinal = 0;
+    }else{
+      $cropHeightFinal = $cropHeight;
+    }
+    imagecopyresampled($image_resized, $image, 0, 0, $cropWidth, $cropHeightFinal, $final_width, $final_height, $width_old - 2 * $cropWidth, $height_old - 2 * $cropHeight);
+
+
     # Taking care of original, if needed
     if ( $delete_original ) {
       if ( $use_linux_commands ) exec('rm '.$file);
@@ -113,7 +115,7 @@
       default:
       break;
     }
-    
+
     # Writing image according to type to the output destination and image quality
     switch ( $info[2] ) {
       case IMAGETYPE_GIF:   imagegif($image_resized, $output);    break;
